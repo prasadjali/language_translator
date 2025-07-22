@@ -118,13 +118,12 @@ print(f"BERTScore F1: {F1.mean():.4f}")
 scores = []
 lang_pairs = {"kan_Knda": "Kannada", "hin_Deva": "Hindi", "tam_Taml": "Tamil", "tel_Telu": "Telugu", "ben_Beng": "Bengali"}
 
-i = 0
+
 for pred, ref, tgt in zip(translated_texts, ref_texts, tgt_lang):
     P, R, F1 = score([pred], [[ref]], lang=lang_pairs[tgt], rescale_with_baseline=True)
     # Print F1 score (semantic similarity)
     print(f"BERTScore F1: {F1.mean():.4f}")
-    mlflow.log_metric(f"BERTScore_F1_Lang {lang_pairs[tgt]}", F1.mean().item(), step=i)
-    i += 1
+    mlflow.log_metric(f"BERTScore_F1_Lang {lang_pairs[tgt]}", F1.mean().item())
 
     
 mlflow.end_run()
