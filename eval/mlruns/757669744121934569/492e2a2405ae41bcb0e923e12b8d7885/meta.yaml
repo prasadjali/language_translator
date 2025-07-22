@@ -1,0 +1,14 @@
+artifact_uri: file:///home/prasad/cap-proj/lang_trans_res/language_translator/eval/mlruns/757669744121934569/492e2a2405ae41bcb0e923e12b8d7885/artifacts
+end_time: 1753183590292
+entry_point_name: ''
+experiment_id: '757669744121934569'
+lifecycle_stage: active
+run_id: 492e2a2405ae41bcb0e923e12b8d7885
+run_name: translation_eval_run
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753183581313
+status: 3
+tags: []
+user_id: prasad

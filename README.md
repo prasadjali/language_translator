@@ -9,6 +9,7 @@ A brief description of what your project does and why it exists.
 - [Features](#features)
 - [Model Details](#model-details)
 - [Evaluation Metrics](#evaluation-metrics)
+- [References](#references)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -31,14 +32,17 @@ source install.sh
 
 ## Usage
 Sample code to invoke the Model for language translation
-
+<pre>python
 import torch
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 import sys
-#### Add the path to the cloned repository's huggingface_interface directory
+
+#Add the path to the cloned repository's huggingface_interface directory
 sys.path.append("IndicTrans2/huggingface_interface")
 sys.path.append("IndicTransToolkit")
+
 from IndicTransToolkit.processor import IndicProcessor
+
 #### recommended to run this on a gpu with flash_attn installed
 #### don't set attn_implemetation if you don't have flash_attn
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
@@ -86,6 +90,7 @@ with torch.no_grad():
         num_return_sequences=1,
     )
 
+
 #### Decode the generated tokens into text
 generated_tokens = tokenizer.batch_decode(
     generated_tokens,
@@ -99,6 +104,7 @@ translations = ip.postprocess_batch(generated_tokens, lang=tgt_lang)
 for input_sentence, translation in zip(input_sentences, translations):
     print(f"{src_lang}: {input_sentence}")
     print(f"{tgt_lang}: {translation}")
+</pre>
 
 ## Features
 Highlight key capabilities or unique aspects of the project.
@@ -121,7 +127,7 @@ Key features:
 The model is a significant step toward democratizing access to high-quality translation tools for Indian languages.
 
 # Model Architecture
-
+<pre>
 IndicTransForConditionalGeneration(
   (model): IndicTransModel(
     (encoder): IndicTransEncoder(
@@ -176,6 +182,7 @@ IndicTransForConditionalGeneration(
   )
   (lm_head): Linear(in_features=512, out_features=122672, bias=False)
 )
+</pre>
 
 The `IndicTransForConditionalGeneration` model is built upon the `IndicTransModel` and includes an additional `lm_head` for language modeling
 
@@ -221,7 +228,26 @@ The `IndicTransForConditionalGeneration` model is built upon the `IndicTransMode
 This architecture is characteristic of a robust neural machine translation model designed for handling languages, likely including a significant focus on Indic languages given the "IndicTrans" naming convention.
 
 ## Evaluation Metrics
-Include chrF++, BLEU, TAS, and other relevant scores.
+Used BERT Score https://github.com/Tiiiger/bert_score for evaluation
+BLEU Score and chrF2++ were not helpful thought text is valid
+
+1. Created Agriculture and plant disease data set from text books and websites
+2. Firt column contains English text
+3. Second column contains Human written translation text - served as Ref text
+4. API is invoked to perform Language translation
+5. BERT score is calculated for translated text
+
+BERT Score >80 is observed
+
+## Translation Performance
+
+Time taken for Eng to Indic Languages for small text with GPU less than 1 seconds
+Time taken for Eng to Indic Languages for medium text with GPU around 1.4 seconds
+
+## References
+1. Class 6 Science Text Book English - file:///C:/Users/Prasad/Downloads/6th-english-science.pdf
+2. Class 6 Science Text Book Kannada - file:///C:/Users/Prasad/Downloads/6th-kannada-science.pdf
+3. https://agriculture.vikaspedia.in/viewcontent/agriculture/crop-production/integrated-weed-management/biological-control-of-parthenium?lgn=en#section2
 
 ## Contributing
 Guidelines for submitting issues or pull requests.
