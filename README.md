@@ -21,11 +21,11 @@ IndicTrans2 is open-source, Hugging Face-compatible, and optimized for both rese
 Step-by-step instructions to set up the project locally.
 https://github.com/AI4Bharat/IndicTrans2/tree/main?tab=readme-ov-file#installation
 
-# Clone the github repository and navigate to the project directory.
+### Clone the github repository and navigate to the project directory.
 git clone https://github.com/AI4Bharat/IndicTrans2
 cd IndicTrans2
 
-# Install all the dependencies and requirements associated with the project.
+### Install all the dependencies and requirements associated with the project.
 source install.sh
 
 
