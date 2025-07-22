@@ -35,12 +35,12 @@ Sample code to invoke the Model for language translation
 import torch
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 import sys
-# Add the path to the cloned repository's huggingface_interface directory
+#### Add the path to the cloned repository's huggingface_interface directory
 sys.path.append("IndicTrans2/huggingface_interface")
 sys.path.append("IndicTransToolkit")
 from IndicTransToolkit.processor import IndicProcessor
-# recommended to run this on a gpu with flash_attn installed
-# don't set attn_implemetation if you don't have flash_attn
+#### recommended to run this on a gpu with flash_attn installed
+#### don't set attn_implemetation if you don't have flash_attn
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 print(DEVICE)
 
@@ -66,7 +66,7 @@ input_sentences = [
 
 batch = ip.preprocess_batch(input_sentences, src_lang=src_lang, tgt_lang=tgt_lang)
 
-# Tokenize the sentences and generate input encodings
+#### Tokenize the sentences and generate input encodings
 inputs = tokenizer(
     batch,
     truncation=True,
@@ -75,7 +75,7 @@ inputs = tokenizer(
     return_attention_mask=True,
 ).to(DEVICE)
 
-# Generate translations using the model
+#### Generate translations using the model
 with torch.no_grad():
     generated_tokens = model.generate(
         **inputs,
@@ -86,14 +86,14 @@ with torch.no_grad():
         num_return_sequences=1,
     )
 
-# Decode the generated tokens into text
+#### Decode the generated tokens into text
 generated_tokens = tokenizer.batch_decode(
     generated_tokens,
     skip_special_tokens=True,
     clean_up_tokenization_spaces=True,
 )
 
-# Postprocess the translations, including entity replacement
+#### Postprocess the translations, including entity replacement
 translations = ip.postprocess_batch(generated_tokens, lang=tgt_lang)
 
 for input_sentence, translation in zip(input_sentences, translations):
