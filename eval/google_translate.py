@@ -33,7 +33,7 @@ flores_to_iso = {
 
 
 # Copy the project id from the json file containing API credentials
-def translate_text(text, src_lang, tgt_lang, project_id="acquired-ripple-466802-q1"):
+def translate_text(text, src_lang, tgt_lang, project_id="put-here"):
 
     src_lang = flores_to_iso[src_lang]
     tgt_lang = flores_to_iso[tgt_lang]
