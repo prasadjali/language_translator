@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "acquired-ripple-466802-q1",
+  "private_key_id": "a041b8fe07813e11af622e78e9bed6780f6d262a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCm/9GEBOrmI1qI\nx1dzQGyjXHtlqRdk4PvUWy41Onk699oPJEIQHqf5CCEySTlKdELVhhVIg2H6lYh0\nTJsmeEypvMDoJbGqsnobZvKlVSN5+aKt+BBs7NCbtwX80SS8HtA5XZUlwywL2Jv2\nTquovOm4Nzkl/lzej9+72vA61s8KX7QAIPcxbNKFSxtjz9z2tKQR/GKPtf6IiynC\n57e5ioIjwL95svtdC3O1D1OugF1f9knweT9oEG1EII5GhzqlIHx9rdRglUwJxuTs\n7eJohIlPq8ZapGLIsYMVIPFAiYBePPXMQuykGcXTh4xJ/Ye5UU2/1ETwl5zy01Vo\n5bEddkwjAgMBAAECggEACnbMH4wZVetQMHLhMWkPhZr1ZnTWcO1CClfeSNqNnxrJ\nsJoyg4UQPGP8hISfEOHBEFUS/1SwLn3xK2xjamEuWJJpugImpE4DpbTpLl/r1ahF\nP8Zj7RdXqPIqb2GBfkImBPoursuQdnuPpjreubeAo5jePVm3YwC74a8Bz4YHOhyU\nDijsKbjL6/rg3uJ8t++HWTjA3I8IES+n4d4meErkfrLdgAXS3lpTjrP2NdhxQJtB\nKTO8eCjo+KnwGC8AKbxbW/V+ST0haRvwbgMwl1hagHITHeFwagHoRFHgDYYYmD67\nxJdlwviOYYwLVulQCppJQ3cRKdTxFGEj7MmcI5vpiQKBgQDhZc2AAghSJqDpeBpS\n8bz1qUmeXXarhspSzTQnI0mHxBmWITtgRjbTsluwx9TS+2iqPWAQGOrlX98P24/V\njwoiPjuxUJfURUIxgl6PhQcsrL1Ji9qJKp9E1uaF7+fOSgcPkjaUSXkIKrFNShfL\ndeAiWuGgt+wl6ssHv0FrP+rZCwKBgQC9rEAOwZ0w3mmOupgLuRWGRwc7bwEpyVJO\nZvC7C05c/XnT6lK1CvlJYxQU/uE1m2mDHoxRArGh2gmm7m+YqHX5+ZJaADkmNjR/\nbXODewrKRjIfbMlFSEVoRwJiIEcLq/UQkRCX6wTmTIQGxYGeuC9QwGlURsCKngpX\ndF6stow4SQKBgBw2TNmH55i4ww1V/h2BqoApN1C+LBteHLbufmejsBFxRy6WbEMp\nprUqrvVandXmp/wfAIYjSEt7i4UFm2REqiUNGxWfm9Fy9c0Sn1lhcjtyR6MMAUeH\n8TWBnIsJMz+L3oRhbblz1NVj2pts+bt6vpouO+2M997rG4yVsM+GyZNvAoGBAKsj\niaUG44tdk0b6bAhf1uESo57n2NfYVBBz55ANcoaLG2qvijLalPW3lT4ggBo7gSeS\n366UzKwqLP1XNJA8qD6GBpx4iRhGXnX/zvN6iNDcJ4udP7norN+a+raJQzFv1a4+\nBgfdQc1+ir4FZaBNtjuZcTBeqooocVJZqLcT+08pAoGAPFhmwzJvPjWoKHsGkLPO\nPfB/RaGHO8SmxAbaIsVjZ6CO9i2rJIfXm0DkbqJW3dlh7gC92Gc1fA1W159Cv6W6\nT+zdrmCAKIikd79zbKKcwJmoiDMneNUNKuEVS0dEC4HpBPmISyHdbCWVZ/JKNuux\nYnAW3PFsv8u5BhqFdn5C8iQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "prasadjali@acquired-ripple-466802-q1.iam.gserviceaccount.com",
+  "client_id": "116992832708923829541",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/prasadjali%40acquired-ripple-466802-q1.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

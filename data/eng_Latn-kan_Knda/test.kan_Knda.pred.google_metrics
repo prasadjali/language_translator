@@ -1,0 +1,39 @@
+Wed Jul 23 20:44:09 IST 2025
+[
+{
+ "name": "BLEU",
+ "score": 18.3,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:none|smooth:exp|version:2.5.1",
+ "verbose_score": "44.6/21.7/14.1/8.2 (BP = 1.000 ratio = 1.036 hyp_len = 401 ref_len = 387)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "none",
+ "smooth": "exp",
+ "version": "2.5.1"
+},
+{
+ "name": "chrF2",
+ "score": 49.6,
+ "signature": "nrefs:1|case:mixed|eff:yes|nc:6|nw:0|space:no|version:2.5.1",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "yes",
+ "nc": "6",
+ "nw": "0",
+ "space": "no",
+ "version": "2.5.1"
+}
+]
+{
+ "name": "chrF2++",
+ "score": 45.8,
+ "signature": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.5.1",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "yes",
+ "nc": "6",
+ "nw": "2",
+ "space": "no",
+ "version": "2.5.1"
+}

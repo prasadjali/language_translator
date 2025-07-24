@@ -14,7 +14,7 @@ A brief description of what your project does and why it exists.
 - [License](#license)
 
 ## Introduction
-This project leverages IndicTrans2, a state-of-the-art multilingual neural machine translation (NMT) model developed by AI4Bharat, to enable high-quality translation across all 22 scheduled Indian languages. Built on transformer architecture, IndicTrans2 supports translation between English↔Indic and Indic↔Indic language pairs, including multiple scripts for low-resource languages such as Kashmiri, Manipuri, and Sindhi.
+This project leverages IndicTrans2 200M parameter model (suitable for laptop GPU runs), a state-of-the-art multilingual neural machine translation (NMT) model developed by AI4Bharat, to enable high-quality translation across all 22 scheduled Indian languages. Built on transformer architecture, IndicTrans2 supports translation between English↔Indic and Indic↔Indic language pairs, including multiple scripts for low-resource languages such as Kashmiri, Manipuri, and Sindhi.
 The model is trained on the Bharat Parallel Corpus Collection (BPCC), comprising over 230 million bitext pairs, and evaluated on diverse benchmarks like IN22-Gen and IN22-Conv, covering general and conversational domains. It incorporates script unification and lexical sharing to improve performance across morphologically rich and low-resource languages.
 IndicTrans2 is open-source, Hugging Face-compatible, and optimized for both research and production-grade deployment.
 
@@ -228,16 +228,81 @@ The `IndicTransForConditionalGeneration` model is built upon the `IndicTransMode
 This architecture is characteristic of a robust neural machine translation model designed for handling languages, likely including a significant focus on Indic languages given the "IndicTrans" naming convention.
 
 ## Evaluation Metrics
-Used BERT Score https://github.com/Tiiiger/bert_score for evaluation
-BLEU Score and chrF2++ were not helpful thought text is valid
 
-1. Created Agriculture and plant disease data set from text books and websites
-2. Firt column contains English text
-3. Second column contains Human written translation text - served as Ref text
-4. API is invoked to perform Language translation
-5. BERT score is calculated for translated text
+## A visual representation of machine translation systems for Indic languages using the IN22-Gen Evaluation set in the En-Indic direction
 
-BERT Score >80 is observed
+ Source - https://arxiv.org/pdf/2305.16307
+![alt text](image.png)
+
+
+## chrF++ Scores comparison of IndicTrans2 with different models 
+```
+Reference - https://arxiv.org/pdf/2305.16307
+ M100 - M2M-100 model
+ N1.2 - NLLB 1.2B distilled model as 
+ N54 - NLLB 54.5B MoE model 
+ Goog - Google Translate 
+ Az - Microsoft Azure Translate 
+ IT2 - IndicTrans2 model
+ ```
+
+![alt text](image-1.png)
+
+## Excercise 
+Aim - Understand the dataset preparation for language translation and chrF++ scoring comparison against different language translation models
+
+Steps performed
+1. Created Agriculture and plant disease data set from text books and websites - PDF stored under "raw data source"
+2. Use description on "Potato" plant in English from the Book
+3. Use description on "Potato" plant in Kannada from the Book
+4. Provide the text to Google translation API and cacluate Metrics (use compute_metrics.sh from Indic site)
+5. Use IndicTrans2 API to perform Language translation and cacluate Metrics (use compute_metrics.sh from Indic site)
+6. Compare the scores
+
+Google Translator chrF2 score - 49.6, chrF2++ 45.8
+IndicTrans2 Translator chrF2 score - 45.6, chrF2++ 40.9
+
+The scores for English to Kannada as compared with the references is around the same
+Here we have choosen the IndicTrans2 200M parameter model running on Single laptop NVIDIA GPU
+
+## Human Eval
+English to Hindi, Kannada, Tamil text generated for the Agriculture model are Human evaled and found to be correct using the IndicTrans2 200M parameter model.
+
+## How is chrF++ calculated
+chrF++ is a machine translation evaluation metric that calculates the similarity between a machine translation output (hypothesis) and one or more human reference translations. It's an extension of the original chrF metric.
+
+Here's a breakdown of how chrF++ is calculated:
+
+**1. Core Idea: F-score based on N-grams**
+
+Both chrF and chrF++ are built upon the F-score statistic, which is the harmonic mean of precision and recall.
+
+The general formula for an n-gram based F-score is:
+
+$F_{\beta} = \frac{(1 + \beta^2) \cdot Precision \cdot Recall}{\beta^2 \cdot Precision + Recall}$
+
+Where:
+* **Precision (P)**: The percentage of n-grams in the hypothesis that are also found in the reference(s).
+* **Recall (R)**: The percentage of n-grams in the reference(s) that are also found in the hypothesis.
+* **$\beta$ (beta)**: A parameter that determines the importance of recall with respect to precision. For chrF and chrF++, $\beta = 2$ is typically used, meaning recall is weighted twice as much as precision. This emphasizes that a good translation should cover most of the information in the reference.
+
+**2. Character N-grams (chrF foundation):**
+
+The original chrF metric focuses on **character n-grams**. This means it looks at sequences of characters (e.g., "the" has character unigrams 't', 'h', 'e'; bigrams 'th', 'he'; trigrams 'the').
+
+* It calculates character n-gram precision and recall for various n-gram lengths (typically up to 6 for character n-grams, i.e., $N=1$ to $6$).
+* These precision and recall values are then averaged over all character n-gram lengths to get overall character n-gram precision ($CHRP$) and recall ($CHRR$).
+* Finally, the $F_{\beta}$ score (with $\beta=2$) is calculated using $CHRP$ and $CHRR$.
+
+**3. Adding Word N-grams for chrF++:**
+
+chrF++ enhances chrF by incorporating **word n-grams** in addition to character n-grams. This addition was found to improve correlation with human judgments of translation quality.
+
+* Typically, chrF++ includes **word unigrams (1-grams) and bigrams (2-grams)**.
+* It calculates word n-gram precision and recall similarly to character n-grams.
+* The scores from character n-grams and word n-grams are then *averaged together* to produce the final chrF++ score. The default character n-gram order is 6, and the default word n-gram order is 2.
+
+
 
 ## Translation Performance
 
@@ -245,9 +310,10 @@ Time taken for Eng to Indic Languages for small text with GPU less than 1 second
 Time taken for Eng to Indic Languages for medium text with GPU around 1.4 seconds
 
 ## References
-1. Class 6 Science Text Book English - file:///C:/Users/Prasad/Downloads/6th-english-science.pdf
-2. Class 6 Science Text Book Kannada - file:///C:/Users/Prasad/Downloads/6th-kannada-science.pdf
-3. https://agriculture.vikaspedia.in/viewcontent/agriculture/crop-production/integrated-weed-management/biological-control-of-parthenium?lgn=en#section2
+1. IndicTrans2: Towards High-Quality and Accessible Machine Translation Models for all 22 Scheduled Indian Languages https://arxiv.org/pdf/2305.16307 
+2. Class 6 Science Text Book English - file:///C:/Users/Prasad/Downloads/6th-english-science.pdf
+3. Class 6 Science Text Book Kannada - file:///C:/Users/Prasad/Downloads/6th-kannada-science.pdf
+4. https://agriculture.vikaspedia.in/viewcontent/agriculture/crop-production/integrated-weed-management/biological-control-of-parthenium?lgn=en#section2
 
 ## Contributing
 Guidelines for submitting issues or pull requests.
